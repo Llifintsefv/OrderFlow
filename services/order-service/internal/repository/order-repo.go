@@ -2,10 +2,8 @@ package repository
 
 import (
 	"database/sql"
-	"fmt"
 	"order-service/internal/models"
 
-	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -19,14 +17,6 @@ type orderRepository struct {
 }
 
 func NewOrderRepository(db *gorm.DB) OrderRepository {
-	connStr := "postgres://postgres:mysecretpassword@localhost:5432/postgres?sslmode=disable"
-	db,err := gorm.Open(postgres.Open(connStr), &gorm.Config{})
-	if err != nil {
-		panic(err)
-	}
-	
-	fmt.Println("Connected to database")
-
 	db.AutoMigrate(&models.Order{}, &models.Item{})
 	return &orderRepository{db: db}
 }

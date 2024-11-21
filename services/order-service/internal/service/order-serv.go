@@ -1,8 +1,8 @@
 package service
 
 import (
-	"order-service/internal/repository"
 	"order-service/internal/models"
+	"order-service/internal/repository"
 )
 
 type OrderService interface {
